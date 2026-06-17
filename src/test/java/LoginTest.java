@@ -8,8 +8,8 @@ public class LoginTest {
     public void checkLogin() {
         //1. открыть браузер
         //2. зайти https://www.saucedemo.com/
-        // 3. Нажать кнопку Login (Добавьте эту строчку)
-        // 4. Закрыть браузер после теста (Добавьте эту строчку)
+        // 3. Нажать кнопку Login 
+        // 4. Закрыть браузер после теста
 
         WebDriver browser = new ChromeDriver();
         browser.get("https://www.saucedemo.com/");
