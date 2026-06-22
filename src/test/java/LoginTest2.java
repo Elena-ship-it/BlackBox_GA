@@ -27,3 +27,4 @@ public class LoginTest2 extends BaseTest {
         assertEquals(errorText, "Epic sadface: Username is required");
     }
 }
+
