@@ -11,7 +11,7 @@ public class BaseTest {
     public void setUp() {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("start-maximized");
-        // options.addArguments("headless");
+        options.addArguments("headless");
         driver = new ChromeDriver(options);
 
         driver.get("https://saucedemo.com");
