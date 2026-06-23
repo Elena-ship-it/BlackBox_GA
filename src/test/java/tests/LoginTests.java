@@ -1,12 +1,11 @@
 package tests;
 
 import org.testng.annotations.Test;
-import tests.BaseTest;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
-public class LoginTest2 extends BaseTest {
+public class LoginTests extends BaseTest {
 
     // Успешный вход в систему
     @Test

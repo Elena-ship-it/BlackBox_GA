@@ -1,6 +1,7 @@
 package tests;
 
 import java.time.Duration;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -11,7 +12,7 @@ import pages.ProductsPage;
 
 public class BaseTest {
     WebDriver driver;
-   public LoginPage loginPage;
+    public LoginPage loginPage;
     public ProductsPage productsPage;
 
     @BeforeMethod
