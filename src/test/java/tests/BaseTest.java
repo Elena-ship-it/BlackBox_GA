@@ -1,5 +1,7 @@
 package tests;
 
+import java.time.Duration;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterMethod;
@@ -10,9 +12,9 @@ import pages.ProductsPage;
 import java.time.Duration;
 
 public class BaseTest {
-    protected WebDriver driver;
-    protected LoginPage loginPage;
-    protected ProductsPage productsPage;
+    WebDriver driver;
+    public LoginPage loginPage;
+    public ProductsPage productsPage;
 
     @BeforeMethod
     public void setUp() {
