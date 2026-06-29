@@ -38,3 +38,4 @@ public class ProductsPage extends BasePage {
         return color;
     }
 }
+
