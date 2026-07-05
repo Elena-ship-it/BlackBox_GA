@@ -2,33 +2,50 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import user.User;
+import utils.PropertyReader;
 
-public class LoginPage {
-    private final By loginInput = By.xpath("//*[@placeholder='Username']");
-    private final By passwordInput = By.xpath("//input[@placeholder='Password']");
-    private final By submitButton = By.cssSelector("#login-button");
-    private final By error = By.xpath("//h3[@data-test='error']");
-    WebDriver driver;
+public class LoginPage extends BasePage {
+
+    private final By usernameInput = By.id("user-name");
+    private final By passwordInput = By.id("password");
+    private final By loginButton = By.id("login-button");
+    private final By errorMessage = By.cssSelector("[data-test='error']");
 
     public LoginPage(WebDriver driver) {
-        this.driver = driver;
+        super(driver);
     }
 
-    public void open() {
-        driver.get("https://saucedemo.com");
+    public LoginPage open() {
+
+        driver.get(PropertyReader.getProperty("saucedemo.url"));
+
+        return this;
     }
 
-    public void login(String username, String password) {
-        driver.findElement(loginInput).sendKeys(username);
-        driver.findElement(passwordInput).sendKeys(password);
-        driver.findElement(submitButton).click();
+    public ProductsPage login(String username, String password) {
+
+        type(usernameInput, username);
+        type(passwordInput, password);
+
+        click(loginButton);
+
+        return new ProductsPage(driver);
+    }
+
+    public ProductsPage login(User user) {
+
+        return login(
+                user.getName(),
+                user.getPassword()
+        );
     }
 
     public boolean isErrorDisplayed() {
-        return driver.findElement(error).isDisplayed();
+        return isDisplayed(errorMessage);
     }
 
     public String getErrorText() {
-        return driver.findElement(error).getText();
+        return getText(errorMessage);
     }
 }
