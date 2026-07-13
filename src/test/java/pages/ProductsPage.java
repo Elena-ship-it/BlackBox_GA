@@ -4,7 +4,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 public class ProductsPage extends BasePage {
-
     private final By pageTitle = By.className("title");
     private final By cartBadge = By.className("shopping_cart_badge");
     private final By cartLink = By.className("shopping_cart_link");
@@ -18,11 +17,7 @@ public class ProductsPage extends BasePage {
     }
 
     public void addToCart(String productName) {
-
-        By button = By.xpath(
-                "//div[text()='" + productName +
-                        "']/ancestor::div[@class='inventory_item']//button");
-
+        By button = By.xpath("//div[text()='" + productName + "']/ancestor::div[@class='inventory_item']//button");
         click(button);
     }
 
@@ -35,14 +30,11 @@ public class ProductsPage extends BasePage {
     }
 
     public String getCartBadgeBackgroundColor() {
-        return driver.findElement(cartBadge)
-                .getCssValue("background-color");
+        return driver.findElement(cartBadge).getCssValue("background-color");
     }
 
     public BasketPage openCart() {
-
         click(cartLink);
-
         return new BasketPage(driver);
     }
 }

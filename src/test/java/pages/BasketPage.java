@@ -2,6 +2,7 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -20,20 +21,17 @@ public class BasketPage extends BasePage {
     }
 
     public List<String> getProducts() {
-
-        return driver.findElements(productNames)
+        return wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(productNames))
                 .stream()
                 .map(element -> element.getText())
                 .collect(Collectors.toList());
     }
 
     public int getProductsCount() {
-
-        return driver.findElements(productNames).size();
+        return wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(productNames)).size();
     }
 
     public boolean containsProduct(String productName) {
-
         return getProducts().contains(productName);
     }
 }
