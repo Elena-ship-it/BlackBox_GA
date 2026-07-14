@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 public class LoginTest {
     @Test
     public void checkLogin() {
-        //1. открыть браузер
+        //1. открыть браузер+
         //2. зайти https://www.saucedemo.com/
         // 3. Нажать кнопку Login 
         // 4. Закрыть браузер после теста

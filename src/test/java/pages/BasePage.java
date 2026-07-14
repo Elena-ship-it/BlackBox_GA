@@ -7,21 +7,30 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-public class BasePage {
-    public static final String BASE_URL = "https://saucedemo.com";
-    public WebDriver driver;
-    public WebDriverWait wait;
+public abstract class BasePage {
+
+    protected WebDriver driver;
+    protected WebDriverWait wait;
 
     public BasePage(WebDriver driver) {
         this.driver = driver;
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
-    public void clickElement(By locator) {
+    protected void click(By locator) {
         wait.until(ExpectedConditions.elementToBeClickable(locator)).click();
     }
 
-    public void writeText(By locator, String text) {
+    protected void type(By locator, String text) {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(locator)).clear();
         wait.until(ExpectedConditions.visibilityOfElementLocated(locator)).sendKeys(text);
+    }
+
+    protected String getText(By locator) {
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(locator)).getText();
+    }
+
+    protected boolean isDisplayed(By locator) {
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(locator)).isDisplayed();
     }
 }

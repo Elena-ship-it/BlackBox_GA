@@ -1,37 +1,51 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
+import user.User;
+import utils.PropertyReader;
 
 public class LoginPage extends BasePage {
 
-    private final By loginInput = By.xpath("//*[@placeholder='Username']");
-    private final By passwordInput = By.xpath("//*[@placeholder='Password']");
-    private final By submitButton = By.cssSelector("#login-button");
-    private final By error = By.xpath("//h3[@data-test='error']");
+    private final By usernameInput = By.id("user-name");
+    private final By passwordInput = By.id("password");
+    private final By loginButton = By.id("login-button");
+    private final By errorMessage = By.cssSelector("[data-test='error']");
 
     public LoginPage(WebDriver driver) {
         super(driver);
     }
 
-    public void open() {
-        driver.get(BASE_URL);
+    @Step("Открыть страницу авторизации")
+    public LoginPage open() {
+        driver.get(PropertyReader.getProperty("saucedemo.url"));
+        return this;
     }
 
-    public void login(String login, String password) {
-        writeText(loginInput, login);
-        writeText(passwordInput, password);
-        clickElement(submitButton);
+    @Step("Авторизоваться пользователем '{username}'")
+    public ProductsPage login(String username, String password) {
+        type(usernameInput, username);
+        type(passwordInput, password);
+        click(loginButton);
+        return new ProductsPage(driver);
     }
 
+    @Step("Авторизоваться пользователем")
+    public ProductsPage login(User user) {
+        return login(
+                user.getName(),
+                user.getPassword()
+        );
+    }
+
+    @Step("Проверить отображение сообщения об ошибке")
     public boolean isErrorDisplayed() {
-        boolean isDisplayed = wait.until(ExpectedConditions.visibilityOfElementLocated(error)).isDisplayed();
-        return isDisplayed;
+        return isDisplayed(errorMessage);
     }
 
+    @Step("Получить текст сообщения об ошибке")
     public String getErrorText() {
-        String text = wait.until(ExpectedConditions.visibilityOfElementLocated(error)).getText();
-        return text;
+        return getText(errorMessage);
     }
 }
