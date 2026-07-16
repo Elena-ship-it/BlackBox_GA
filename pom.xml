@@ -117,9 +117,6 @@
                 <artifactId>allure-maven</artifactId>
                 <version>${allure.maven.version}</version>
             </plugin>
-
         </plugins>
-
     </build>
-
 </project>
