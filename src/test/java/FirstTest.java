@@ -1,13 +1,14 @@
+import java.util.*;
+
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertEquals;
 
 public class FirstTest {
-    //КРАТНО 3, ВОЗВРАЩАТЬ 'T'
-    //КРАТНО 5, ВОЗВРАЩАТЬ 'M'
-    //КРАТНО 3 И 5, ВОЗВРАЩАТЬ 'TIM'
-    //ВОЗВРАЩАТЬ 'FAIL'
-
+    // КРАТНО 3, ВОЗВРАЩАТЬ 'T'
+    // КРАТНО 5, ВОЗВРАЩАТЬ 'M'
+    // КРАТНО 3 И 5, ВОЗВРАЩАТЬ 'TIM'
+    // ВОЗВРАЩАТЬ 'FAIL'
     public String trialCode(int number) {
         if (number % 3 == 0 && number % 5 == 0) {
             return "TIM";
@@ -15,7 +16,9 @@ public class FirstTest {
             return "M";
         } else if (number % 3 == 0) {
             return "T";
-        } else return "FAIL";
+        } else {
+            return "FAIL";
+        }
     }
 
     @Test
@@ -40,5 +43,15 @@ public class FirstTest {
     public void timTest4() {
         String actualResult = trialCode(2);
         assertEquals(actualResult, "FAIL");
+    }
+
+    public static void main(String[] args) {
+        Map<String, String> phoneBook = new HashMap<>();
+        phoneBook.put("John", "33333333");
+        phoneBook.put("Max", "555555");
+        phoneBook.put("Serg", "77777");
+        phoneBook.put("Alex", "999999");
+
+        System.out.println(phoneBook.get("Alex"));
     }
 }
